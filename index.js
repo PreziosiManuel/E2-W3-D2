@@ -18,9 +18,8 @@ btnReset.onclick = function () {
 };
 
 // TIMER
-
 const timer = document.getElementById("timer");
-let intervalId;
+let intervalId = startTimer(60);
 
 function addLeadingZero(value) {
   return value < 10 ? "0" + value : value;
@@ -35,25 +34,23 @@ function startTimer(duration) {
     minutes = Math.floor((timer % 3600) / 60);
     seconds = timer % 60;
 
-    timer.textContent = addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
+    document.getElementById("timer").textContent =
+      addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
 
     --timer;
 
     if (timer < 0) {
       clearInterval(intervalId);
-      timer.textContent = "Time's up!";
+      document.getElementById("timer").textContent = "Tempo scaduto!";
     }
   }, 1000);
 
   return intervalId;
 }
 
-btnSave.addEventListener("click", function () {
-  clearInterval(intervalId);
-  intervalId = startTimer;
-});
-
-btnReset.addEventListener("click", function () {
-  clearInterval(intervalId);
-});
-startTimer(60);
+btnReset.onclick,
+  (btnSave.onclick = function () {
+    clearInterval(intervalId); // Interrompi il timer corrente
+    timer.textContent = "00:00:00"; // Reimposta il timer a "00:00:00"
+    intervalId = startTimer(60); // Avvia un nuovo timer
+  });
