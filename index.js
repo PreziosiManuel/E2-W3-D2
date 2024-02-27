@@ -19,7 +19,6 @@ btnReset.onclick = function () {
 
 // TIMER
 const timer = document.getElementById("timer");
-let intervalId = startTimer(60);
 
 function addLeadingZero(value) {
   return value < 10 ? "0" + value : value;
@@ -37,7 +36,7 @@ function startTimer(duration) {
     document.getElementById("timer").textContent =
       addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
 
-    --timer;
+    ++timer;
 
     if (timer < 0) {
       clearInterval(intervalId);
@@ -47,10 +46,4 @@ function startTimer(duration) {
 
   return intervalId;
 }
-
-btnReset.onclick,
-  (btnSave.onclick = function () {
-    clearInterval(intervalId); // Interrompi il timer corrente
-    timer.textContent = "00:00:00"; // Reimposta il timer a "00:00:00"
-    intervalId = startTimer(60); // Avvia un nuovo timer
-  });
+let intervalId = startTimer(0);
